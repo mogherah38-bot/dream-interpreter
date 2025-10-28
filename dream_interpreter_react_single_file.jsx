@@ -260,3 +260,36 @@ export default function DreamInterpreterApp() {
     </div>
   );
 }
+REPLICATE_API_TOKEN=your_replicate_api_token_here
+OPENAI_API_KEY=your_openai_api_key_here
+{
+  "version": 2,
+  "builds": [
+    { "src": "src/api/interpreter.js", "use": "@vercel/node" },
+    { "src": "vite.config.js", "use": "@vercel/static-build", "config": { "distDir": "dist" } }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "src/api/$1" },
+    { "src": "/(.*)", "dest": "/" }
+  ]
+}
+# 🌙 Dream Interpreter / مفسر الأحلام
+
+تطبيق ويب حديث لتفسير الأحلام باللغتين العربية والإنجليزية.
+يتيح للمستخدم كتابة الحلم، تفسيره تلقائيًا عبر نموذج ذكاء اصطناعي (Replicate أو OpenAI)،
+مع إمكانية حفظ وتصدير التفسيرات.
+
+## 🚀 المميزات
+- دعم لغتين (عربي / إنجليزي)
+- حفظ محلي للأحلام
+- واجهة بسيطة بثلاثة ثيمات
+- جاهز للربط بـ API (Replicate أو OpenAI)
+- نشر مباشر عبر Vercel
+
+## ⚙️ الإعداد
+```bash
+git clone https://github.com/yourusername/dream-interpreter.git
+cd dream-interpreter
+npm install
+cp .env.example .env
+npm run dev
